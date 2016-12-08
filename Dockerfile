@@ -12,6 +12,9 @@ RUN ./configure && make && make install
 
 RUN mkdir /data
 
+ADD route.py /data/route.py
+ADD bird.conf /data/bird.conf
+
 VOLUME /bird
 VOLUME /data
 
