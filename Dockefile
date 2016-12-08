@@ -1,0 +1,13 @@
+FROM python:2-onbuild
+
+RUN apt-get update && apt-get install -y wget vim nano
+
+# Install BIRD internet routing
+RUN wget ftp://bird.network.cz/pub/bird/bird-1.5.0.tar.gz && tar -zxvf bird-1.5.0.tar.gz && rm bird-1.5.0.tar.gz
+WORKDIR bird-1.5.0
+RUN ./configure && make && make install
+
+RUN mkdir data
+
+VOLUME /bird
+VOLUME /data
