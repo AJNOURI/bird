@@ -10,14 +10,13 @@ RUN wget ftp://bird.network.cz/pub/bird/bird-1.5.0.tar.gz && tar -zxvf bird-1.5.
 WORKDIR bird-1.5.0
 RUN ./configure && make && make install
 
-RUN mkdir /data
-
-ADD route.py /data/route.py
-ADD bird.conf /data/bird.conf
+ADD route.py /bird/route.py
+ADD bird.conf /bird/bird.conf
+ADD bgp.conf /bird/bgp.conf
+ADD bgp_route.py /bird/bgp_route.py
+ADD ospf.conf /bird/ospf.conf
+ADD ospf_route.py /bird/ospf_route.py
 
 VOLUME /bird
-VOLUME /data
-
-WORKDIR /data
 
 CMD /bin/bash
